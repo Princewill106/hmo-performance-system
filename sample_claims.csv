@@ -1,0 +1,13 @@
+claim_id,provider,enrollee,diagnosis,amount,submitted,decided,status
+C1001,Reddington Hospital,E01,Malaria,45000,2026-09-28,2026-09-30,approved
+C1002,Reddington Hospital,E02,Hypertension review,30000,2026-09-28,2026-10-01,approved
+C1003,Lagoon Clinic,E03,Malaria,38000,2026-09-29,2026-09-30,approved
+C1004,Lagoon Clinic,E04,Typhoid,52000,2026-09-29,2026-10-02,rejected
+C1005,Prime Care Hospital,E05,Malaria,160000,2026-09-29,2026-10-04,approved
+C1006,Prime Care Hospital,E06,Gastroenteritis,185000,2026-09-30,,pending
+C1007,Evercare Medical,E07,Antenatal visit,25000,2026-09-30,2026-10-01,approved
+C1008,Evercare Medical,E08,Malaria,40000,2026-10-01,2026-10-02,approved
+C1009,Lagoon Clinic,E03,Malaria,38000,2026-10-03,2026-10-05,approved
+C1010,Reddington Hospital,E09,Diabetes review,35000,2026-10-02,2026-10-03,approved
+C1011,Mainland Health Centre,E10,Malaria,28000,2026-10-02,2026-10-03,approved
+C1012,Mainland Health Centre,E11,Upper respiratory infection,22000,2026-10-03,,pending

@@ -1,0 +1,186 @@
+{
+  "name": "HMO Performance System (AI Automation Projects #29)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 7 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "00115a14-9936-53ff-ab8f-8e5e17bfa469",
+      "name": "Schedule (Mondays 7am)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "",
+          "mode": "list"
+        },
+        "options": {}
+      },
+      "id": "a65a87b4-d49a-5a92-9c25-a1201465f062",
+      "name": "Read claims sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "264e425d-b653-5d01-87fd-b510734fd85b",
+      "name": "Test with sample data",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sample data from this repo. Click 'Test workflow' to run the whole flow on it.\nconst sample = [\n {\n  \"claim_id\": \"C1001\",\n  \"provider\": \"Reddington Hospital\",\n  \"enrollee\": \"E01\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"45000\",\n  \"submitted\": \"2026-09-28\",\n  \"decided\": \"2026-09-30\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1002\",\n  \"provider\": \"Reddington Hospital\",\n  \"enrollee\": \"E02\",\n  \"diagnosis\": \"Hypertension review\",\n  \"amount\": \"30000\",\n  \"submitted\": \"2026-09-28\",\n  \"decided\": \"2026-10-01\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1003\",\n  \"provider\": \"Lagoon Clinic\",\n  \"enrollee\": \"E03\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"38000\",\n  \"submitted\": \"2026-09-29\",\n  \"decided\": \"2026-09-30\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1004\",\n  \"provider\": \"Lagoon Clinic\",\n  \"enrollee\": \"E04\",\n  \"diagnosis\": \"Typhoid\",\n  \"amount\": \"52000\",\n  \"submitted\": \"2026-09-29\",\n  \"decided\": \"2026-10-02\",\n  \"status\": \"rejected\"\n },\n {\n  \"claim_id\": \"C1005\",\n  \"provider\": \"Prime Care Hospital\",\n  \"enrollee\": \"E05\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"160000\",\n  \"submitted\": \"2026-09-29\",\n  \"decided\": \"2026-10-04\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1006\",\n  \"provider\": \"Prime Care Hospital\",\n  \"enrollee\": \"E06\",\n  \"diagnosis\": \"Gastroenteritis\",\n  \"amount\": \"185000\",\n  \"submitted\": \"2026-09-30\",\n  \"decided\": \"\",\n  \"status\": \"pending\"\n },\n {\n  \"claim_id\": \"C1007\",\n  \"provider\": \"Evercare Medical\",\n  \"enrollee\": \"E07\",\n  \"diagnosis\": \"Antenatal visit\",\n  \"amount\": \"25000\",\n  \"submitted\": \"2026-09-30\",\n  \"decided\": \"2026-10-01\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1008\",\n  \"provider\": \"Evercare Medical\",\n  \"enrollee\": \"E08\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"40000\",\n  \"submitted\": \"2026-10-01\",\n  \"decided\": \"2026-10-02\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1009\",\n  \"provider\": \"Lagoon Clinic\",\n  \"enrollee\": \"E03\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"38000\",\n  \"submitted\": \"2026-10-03\",\n  \"decided\": \"2026-10-05\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1010\",\n  \"provider\": \"Reddington Hospital\",\n  \"enrollee\": \"E09\",\n  \"diagnosis\": \"Diabetes review\",\n  \"amount\": \"35000\",\n  \"submitted\": \"2026-10-02\",\n  \"decided\": \"2026-10-03\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1011\",\n  \"provider\": \"Mainland Health Centre\",\n  \"enrollee\": \"E10\",\n  \"diagnosis\": \"Malaria\",\n  \"amount\": \"28000\",\n  \"submitted\": \"2026-10-02\",\n  \"decided\": \"2026-10-03\",\n  \"status\": \"approved\"\n },\n {\n  \"claim_id\": \"C1012\",\n  \"provider\": \"Mainland Health Centre\",\n  \"enrollee\": \"E11\",\n  \"diagnosis\": \"Upper respiratory infection\",\n  \"amount\": \"22000\",\n  \"submitted\": \"2026-10-03\",\n  \"decided\": \"\",\n  \"status\": \"pending\"\n }\n];\nreturn sample.map(json => ({ json }));"
+      },
+      "id": "e20c7ebc-3800-5aa4-adbc-d3fd01a2556a",
+      "name": "Sample data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// HMO Performance System: core logic (ported from main.py)\n\n// ---- input normaliser (works for Webhook, Form, WhatsApp, Gmail, Sheets and sample data)\nconst input = $input.all().flatMap(i => {\n  const j = i.json || {};\n  if (j.messages && Array.isArray(j.messages)) {           // WhatsApp Trigger\n    return j.messages.filter(m => m.text).map(m => ({ from: '+' + m.from, text: m.text.body }));\n  }\n  if (j.Subject !== undefined || j.From !== undefined) {     // Gmail Trigger (simple)\n    return [{ from: (j.From || '').replace(/.*<|>.*/g, ''), subject: j.Subject || '', body: j.snippet || j.text || '' }];\n  }\n  const b = (j.body !== undefined && j.headers !== undefined) ? j.body : j;   // Webhook wraps payload in body\n  if (Array.isArray(b)) return b;\n  if (b && Array.isArray(b.items)) return b.items;\n  return [b];\n});\n\nconst Z = 1.5, DUP_DAYS = 7, mean = a => a.reduce((s, x) => s + x, 0) / a.length;\nconst days = (a, b) => (new Date(b) - new Date(a)) / 864e5;\nconst byP = {};\nfor (const r of input) (byP[r.provider] = byP[r.provider] || []).push(r);\nconst k = Object.fromEntries(Object.entries(byP).map(([p, rs]) => { const d = rs.filter(r => r.decided);\n  return [p, { claims: rs.length, avg: mean(rs.map(r => +r.amount)), approval: d.length ? d.filter(r => r.status === 'approved').length / d.length : 0,\n    tat: d.length ? mean(d.map(r => days(r.submitted, r.decided))) : null }]; }));\nconst avgs = Object.values(k).map(v => v.avg), mu = mean(avgs), sd = Math.sqrt(mean(avgs.map(x => (x - mu) ** 2))) || 1;\nconst outliers = Object.entries(k).filter(([, v]) => (v.avg - mu) / sd > Z).map(([p, v]) => `${p}: cost per claim ${((v.avg - mu) / sd).toFixed(2)} SD above network`);\nconst seen = {}, dups = [];\nfor (const r of [...input].sort((a, b) => a.submitted.localeCompare(b.submitted))) {\n  const key = [r.enrollee, r.provider, r.diagnosis, r.amount].join('|');\n  if (seen[key] && days(seen[key].submitted, r.submitted) <= DUP_DAYS) dups.push(`${seen[key].claim_id} and ${r.claim_id}`);\n  seen[key] = r; }\nconst decided = input.filter(r => r.decided), total = input.reduce((s, r) => s + +r.amount, 0), enrollees = new Set(input.map(r => r.enrollee)).size;\nconst report = [`Claims: ${input.length} from ${Object.keys(k).length} providers, ${enrollees} enrollees`,\n  `Total claimed: NGN ${total.toLocaleString()} (NGN ${Math.round(total / enrollees).toLocaleString()} per enrollee)`,\n  `Approval rate: ${Math.round(decided.filter(r => r.status === 'approved').length / decided.length * 100)}%`,\n  `Average turnaround: ${mean(decided.map(r => days(r.submitted, r.decided))).toFixed(1)} days`, `Pending: ${input.length - decided.length}`, '',\n  'Actions:', ...outliers.map(o => '- Review ' + o), ...dups.map(d => '- Possible duplicate: ' + d)].join('\\n');\nreturn [{ json: { outliers: outliers.length, duplicates: dups, report } }];\n"
+      },
+      "id": "c292ed61-534f-5a16-9bbe-2e9ea3291c31",
+      "name": "Logic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "director@yourhmo.com",
+        "subject": "=HMO weekly summary: {{ $json.outliers }} outlier providers",
+        "emailType": "text",
+        "message": "={{ $json.report }}",
+        "options": {}
+      },
+      "id": "cced0ec7-1157-5895-86e7-1046beefac49",
+      "name": "Email medical director",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        720,
+        120
+      ],
+      "webhookId": "cced0ec7-1157-5895-86e7-1046beefac49"
+    },
+    {
+      "parameters": {
+        "content": "## HMO Performance System\nTurns raw claims data into the five numbers an HMO manager needs every week, and the providers to look at first.\n\nEvery Monday it reads claims (claim_id, provider, enrollee, diagnosis, amount, submitted, decided, status) and emails the medical director a summary: volume, cost per enrollee, approval rate, turnaround, providers whose cost per claim is an outlier, and likely duplicate claims.\n\n**Try it:** click *Test workflow* to run on the sample data. Then connect your credentials on the output nodes and activate.\n\nCode and docs: github.com/Princewill106/hmo-performance-system",
+        "height": 340,
+        "width": 420,
+        "color": 5
+      },
+      "id": "178b0e4c-850c-500d-87e0-b792f9e43188",
+      "name": "About this workflow",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -460
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule (Mondays 7am)": {
+      "main": [
+        [
+          {
+            "node": "Read claims sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test with sample data": {
+      "main": [
+        [
+          {
+            "node": "Sample data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read claims sheet": {
+      "main": [
+        [
+          {
+            "node": "Logic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sample data": {
+      "main": [
+        [
+          {
+            "node": "Logic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logic": {
+      "main": [
+        [
+          {
+            "node": "Email medical director",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
